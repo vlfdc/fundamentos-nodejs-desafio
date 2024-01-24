@@ -36,7 +36,12 @@ export class Database {
 
   insert(table, data) {
     if (Array.isArray(this.#database[table])) {
-      this.#database[table].push(data);
+      this.#database[table].push({
+        ...data,
+        completed_at: null,
+        created_at: new Date(),
+        updated_at: new Date(),
+      });
     } else {
       this.#database[table] = [data];
     }
